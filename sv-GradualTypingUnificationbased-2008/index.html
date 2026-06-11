@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&family=Libertinus+Serif+Display&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     
-    <meta content="sv-GradualTypingUnificationbased-2008" name="identifier">
+    <meta name="identifier" content="sv-GradualTypingUnificationbased-2008">
     <meta name="taxon" content="Inproceedings">
-    <meta content="en" name="lang">
+    <meta name="lang" content="en">
     <meta name="toc" content="false">
     <meta name="export-pdf" content="false">
     <title>Gradual Typing with Unification-based Inference</title>
@@ -34,7 +34,7 @@
         <section class="block" lang="en">
           <details open>
             <html>
-    <summary><header><h1 id="sv-GradualTypingUnificationbased-2008"><span class="taxon">Inproceedings</span>Gradual Typing with Unification-based Inference <a class="slug" href="/sv-GradualTypingUnificationbased-2008/">[sv-GradualTypingUnificationbased-2008]</a></h1><div class="metadata"><ul><li class="meta-item">DLS '08</li><li class="meta-item"><address class="author">Jeremy G. Siek, Manish Vachharajani</address></li><li class="meta-item">2008-07-08</li><li class="meta-item"><a href="https://doi.org/10.1145/1408681.1408688" class="link external">10.1145/1408681.1408688</a></li></ul></div></header></summary>
+    <summary><header><h1 id="sv-GradualTypingUnificationbased-2008"><span class="taxon">Inproceedings</span>Gradual Typing with Unification-based Inference <a href="/sv-GradualTypingUnificationbased-2008/" class="slug">[sv-GradualTypingUnificationbased-2008]</a></h1><div class="metadata"><ul><li class="meta-item">DLS '08</li><li class="meta-item"><address class="author">Jeremy G. Siek, Manish Vachharajani</address></li><li class="meta-item">2008-07-08</li><li class="meta-item"><a class="link external" href="https://doi.org/10.1145/1408681.1408688">10.1145/1408681.1408688</a></li></ul></div></header></summary>
     <p><strong>Abstract</strong>: Static and dynamic type systems have well-known strengths and weaknesses. Gradual typing provides the benefits of both in a single language by giving the programmer control over which portions of the program are statically checked based on the presence or absence of type annotations. This paper studies the combination of gradual typing and unification-based type inference with the goal of developing a system that helps programmers increase the amount of static checking in their program. The key question in combining gradual typing and type inference is how should the dynamic type of a gradual system interact with the type variables of a type inference system. This paper explores the design space and shows why three straightforward approaches fail to meet our design goals. This paper presents a new type system based on the idea that a solution for a type variable should be as informative as any type that constrains the variable. The paper also develops an efficient inference algorithm and proves it sound and complete with respect to the type system.</p>
   
 
@@ -53,9 +53,9 @@
                     </h2>
                 </header>
               </summary>
-              <html><section lang="en" class="block"><details>
+              <html><section class="block" lang="en"><details>
     
-    <summary><header><h3 class="disable-numbering" id="000V">Rules for gradual type inference <a href="/000V/" class="slug">[000V]</a></h3><div class="metadata"><ul><li class="meta-item">April 21, 2026</li></ul></div></header></summary>
+    <summary><header><h3 id="000V" class="disable-numbering">Rules for gradual type inference <a class="slug" href="/000V/">[000V]</a></h3><div class="metadata"><ul><li class="meta-item">April 21, 2026</li></ul></div></header></summary>
     <p>In section 3 of <span class="link local"><a href="/sv-GradualTypingUnificationbased-2008/">Gradual Typing with Unification-based Inference</a>
 </span>, the authors discuss some examples where the naive “well-typed after substitution” approach fails. That implies some rules that gradual type inference should follow.</p>
     <p>In the following example codes, <code>α</code> is a type variable not in the parametric polymorphism sense, but in the unification-based type inference sense, that is, a variable to be substituted with a gradual type after type inference.</p>
