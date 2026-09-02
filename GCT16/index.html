@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="GCT16"><meta name="lang" content="en"><title>Abstracting Gradual Typing</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="GCT16"><span class="taxon">Article</span>Abstracting Gradual Typing <a class="slug" href="/GCT16/">[GCT16]</a></h1><div class="metadata"><ul><li class="meta-item">SIGPLAN Not, 51.1</li><li class="meta-item"><address class="author">Ronald Garcia, Alison M. Clark, Éric Tanter</address></li><li class="meta-item">2016-01-11</li><li class="meta-item"><a class="link external" href="https://doi.org/10.1145/2914770.2837670">10.1145/2914770.2837670</a></li></ul></div></header></summary><div>Language researchers and designers have extended a wide variety of type systems to support gradual typing, which enables languages to seamlessly combine dynamic and static checking. These efforts consistently demonstrate that designing a satisfactory gradual counterpart to a static type system is challenging, and this challenge only increases with the sophistication of the type system. Gradual type system designers need more formal tools to help them conceptualize, structure, and evaluate their designs. In this paper, we propose a new formal foundation for gradual typing, drawing on principles from abstract interpretation to give gradual types a semantics in terms of pre-existing static types. Abstracting Gradual Typing (AGT for short) yields a formal account of consistency—one of the cornerstones of the gradual typing approach—that subsumes existing notions of consistency, which were developed through intuition and ad hoc reasoning. Given a syntax-directed static typing judgment, the AGT approach induces a corresponding gradual typing judgment. Then the type safety proof for the underlying static discipline induces a dynamic semantics for gradual programs defined over source-language typing derivations. The AGT approach does not resort to an externally justified cast calculus: instead, run-time checks naturally arise by deducing evidence for consistent judgments during proof reduction. To illustrate the approach, we develop a novel gradually-typed counterpart for a language with record subtyping. Gradual languages designed with the AGT approach satisfy by construction the refined criteria for gradual typing set forth by Siek and colleagues.</div></details></section><footer></footer></article></div></body></html>

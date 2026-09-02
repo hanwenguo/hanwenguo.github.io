@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="WNL-10"><meta name="lang" content="en"><title>Integrating Typed and Untyped Code in a Scripting Language</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="WNL-10"><span class="taxon">Inproceedings</span>Integrating Typed and Untyped Code in a Scripting Language <a class="slug" href="/WNL-10/">[WNL-10]</a></h1><div class="metadata"><ul><li class="meta-item">POPL '10</li><li class="meta-item"><address class="author">Tobias Wrigstad, Francesco Zappa Nardelli, Sylvain Lebresne, Johan Östlund, Jan Vitek</address></li><li class="meta-item">2010-01-17</li><li class="meta-item"><a class="link external" href="https://doi.org/10.1145/1706299.1706343">10.1145/1706299.1706343</a></li></ul></div></header></summary><div>Many large software systems originate from untyped scripting language code. While good for initial development, the lack of static type annotations can impact code-quality and performance in the long run. We present an approach for integrating untyped code and typed code in the same system to allow an initial prototype to smoothly evolve into an efficient and robust program. We introduce like types , a novel intermediate point between dynamic and static typing. Occurrences of like types variables are checked statically within their scope but, as they may be bound to dynamic values, their usage is checked dynamically. Thus like types provide some of the benefits of static typing without decreasing the expressiveness of the language. We provide a formal account of like types in a core object calculus and evaluate their applicability in the context of a new scripting language.</div></details></section><footer></footer></article></div></body></html>

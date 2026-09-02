@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="CD24"><meta name="lang" content="en"><title>Guard Analysis and Safe Erasure Gradual Typing: a Type System for Elixir</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="CD24"><span class="taxon">Online</span>Guard Analysis and Safe Erasure Gradual Typing: a Type System for Elixir <a class="slug" href="/CD24/">[CD24]</a></h1><div class="metadata"><ul></ul></div></header></summary><div>We define several techniques to extend gradual typing with semantic subtyping, specifically targeting dynamic languages. Focusing on the Elixir programming language, we provide the theoretical foundations for its type system. Our approach demonstrates how to achieve type soundness for gradual typing in existing dynamic languages without modifying their compilation, while still maintaining high precision. This is accomplished through the static detection of “strong functions”, which leverage runtime checks inserted by the programmer or performed by the virtual machine, and through a fine-grained type analysis of pattern-matching expressions with guards.</div></details></section><footer><section class="block disable-numbering" lang="en"><details open><summary><header><h1>Backlinks<span style="white-space: pre-wrap">&#x20;</span></h1></header></summary><div><section class="block disable-numbering" lang="en"><details><summary><header><h1 id="2026-W33">Weeknotes 33, Aug 2026 <a class="slug" href="/2026-W33/">[2026-W33]</a></h1><div class="metadata"><ul><li class="meta-item">August 10, 2026</li></ul></div></header></summary><div><section class="block disable-numbering" lang="en"><details open><summary><header><h1>Exact first-order checks for gradual typing?<span style="white-space: pre-wrap">&#x20;</span></h1><div class="metadata"><ul></ul></div></header></summary><div><section class="block disable-numbering" lang="en"><details open><summary><header><h1>My brief understanding of gradual typing<span style="white-space: pre-wrap">&#x20;</span></h1><div class="metadata"><ul></ul></div></header></summary><div><p>One phrasing of the slogan of gradual typing is that “gradual typing is about ill-typed programs.” (I heard this <span class="link local"><a href="/2026-W21/">from Prof. David van Horn during NJPLS 2026</a></span>.) But what does that mean? When do we need ill-typed programs?</p><p>The famous slogan of type systems is that “well-typed programs do not go wrong.” Obviously, we do not want wrong programs even though they are ill-typed. So, our hope is that the program <em>may</em> go right under some circumstances, just that we cannot justify that to the type system.</p><p>From this view, gradual typing means loosening the restrictions from the type system. For instance, we may write <code>x: ?</code> to indicate that <code>x</code> can be seen as anything; in a type system with subtyping, this is the same as down-casting the type of <code>x</code> to the bottom type, so it can be up-cast to any other type.</p><p>Besides checking that the program may go right during loosened type checking, some versions of gradual typing also attempt to do better: in circumstances where the program does go wrong, try to make it go wrong in a controlled way. For example, instead of getting stuck, reaching some explicit error state that blames the reason sounds better. Such controlled wrongness is enforced by runtime checks.</p></div></details></section><section class="block disable-numbering" lang="en"><details open><summary><header><h1>Runtime checks and safe erasure<span style="white-space: pre-wrap">&#x20;</span></h1><div class="metadata"><ul></ul></div></header></summary><div><p>Now, one question is: what exactly should such runtime checks enforce? The answer of that question depends on what kinds of wrongness do we want to control.</p><p>Recall that the goal of the static type system is to rule out certain kinds of stuck. Thus, the runtime checks should focus on the same kinds of stuck: when a value passes the runtime check, using it in certain contexts will reduce instead of stuck.</p><p>It is very intuitive to come up with a inverse criterion: when using a value in certain contexts will not stuck, it should pass the runtime check. The criterion of <span class="link local"><a href="/JTTT25/">robust dynamic embedding</a></span> captures this: if a dynamic term has the semantics of a certain static type, then only the context surrounding it but not the term itself should be blamed if using the term as that type produces an error.</p><p>As stated above, the loosened static obligations are reassured by the runtime checks. Therefore, from this view, it would be absurd if the static obligations themselves are detached from runtime checks. The best view of static types then should be based on the runtime checks.</p></div></details></section><section class="block disable-numbering" lang="en"><details open><summary><header><h1>Safe erasure<span style="white-space: pre-wrap">&#x20;</span></h1><div class="metadata"><ul></ul></div></header></summary><div><p>Specifically, one interesting case is when we are working with a language that <em>already performs runtime type checks</em>. Not just runtime checks, but runtime <em>type</em> checks. As an instance, Python raises <code>TypeError</code> when the type of things do not match.</p><p>For those languages, a natural question then is that can we reuse these already-present checks for gradual typing? This idea is called <span class="link local"><a href="/CD24/">Safe Erasure Gradual Typing</a></span>: although the elaboration is merely erasing type annotations, a well-typed term still either 1) diverges, 2) reduces to a so-typed value, or 3) triggers an error at a runtime check already present in the dynamic language.</p><p>But what does safe erasure mean, after all? From the intuition, we can understand safe erasure as: the guarantees provided by the types are still sound because of existing runtime checks.</p><p>For a function, the inferred function parameters must be over-approximations of their uses in the function body, because otherwise the type would include less values than what would be accepted, which in turn implies more checks than actual, so it would be unsafe to erase.</p><p>On the other hand, the inferred function return types are also over-approximations of what would actually be returned, otherwise it would be also unsafe to erase that type because there are no real checks for return types.</p><p>What about annotated types? One caveat is that types are not strict anymore. By not being strict I mean that, for example, the return value of a function with type <code>A -> B</code> might not be <code>B</code>. Only <em>strong</em> functions have such property; ordinary functions, when passed a value with the unknown type, only returns an unknown.</p><p>This landscape deliberately leaves the other direction open, i.e. under-approximation of function parameter type and under-approximation or function return type.</p></div></details></section><p>If we try to view static types as abstractions of runtime checks, one immediate problem is how to treat higher-order types like function types. A function type cannot be an abstraction of runtime checks, because there are no general way to check if a function has a certain function type (in the usual understanding, returning something in the range type if provided something in the domain type) without calling it.</p><p>On the contrary, there are other type constructors that I call first-order, and they should have the property that a type containing only first-order type constructors is an exact abstraction of a set of runtime checks.</p><p><span class="link local"><a href="/CD24/">Safe Erasure Gradual Typing</a></span> proposes <em>strong functions</em> to deal with function types. A strong function, when called with an arbitrary dynamic argument, can only return a value within its codomain, diverge, or fail through an existing runtime check.</p></div></details></section></div></details></section></div></details></section></footer></article></div></body></html>

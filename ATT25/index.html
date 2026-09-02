@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="ATT25"><meta name="lang" content="en"><title>Gradual Sensitivity Typing</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="ATT25"><span class="taxon">Inproceedings</span>Gradual Sensitivity Typing <a class="slug" href="/ATT25/">[ATT25]</a></h1><div class="metadata"><ul><li class="meta-item"><address class="author">Damián Arquez, Matías Toro, Éric Tanter</address></li><li class="meta-item">2025-06</li><li class="meta-item"><a class="link external" href="https://doi.org/10.1109/CSF64896.2025.00021">10.1109/CSF64896.2025.00021</a></li></ul></div></header></summary><div>Reasoning about the sensitivity of functions with respect to their inputs has interesting applications in various areas, such as differential privacy. Sensitivity type systems support the modular checking and enforcement of sensitivity, but can be overly conservative for certain useful programming patterns. Hence, there is value in bringing the benefits of gradual typing to these disciplines in order to ease their adoption and applicability. In this work, we motivate, formalize, and prototype gradual sensitivity typing. The language GSoul supports both the unrestricted unknown sensitivity and bounded imprecision in the form of sensitivity intervals. Gradual sensitivity typing allows programmers to smoothly evolve typed programs without any static sensitivity information towards hardened programs with a mix of static and dynamic sensitivity checking. Additionally, gradual sensitivity typing seamlessly enables precise runtime sensitivity checks whenever fully static checking would be overly conservative. We formalize a core of the language GSoul and prove that it satisfies both the gradual guarantees and sensitivity type soundness, known as metric preservation. We establish that, in general, gradual metric preservation is termination insensitive, and that one can achieve termination-sensitive gradual metric preservation by hardening specifications to bounded imprecision. Furthermore, we show how the latter can be used to formally reason about the differential privacy guarantees of gradually-typed programs. We implement a prototype of GSoul, which provides an interactive test bed for further exploring the potential of gradual sensitivity typing.</div></details></section><footer></footer></article></div></body></html>

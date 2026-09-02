@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="SW10"><meta name="lang" content="en"><title>Threesomes, with and without Blame</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="SW10"><span class="taxon">Inproceedings</span>Threesomes, with and without Blame <a class="slug" href="/SW10/">[SW10]</a></h1><div class="metadata"><ul><li class="meta-item">POPL '10</li><li class="meta-item"><address class="author">Jeremy G. Siek, Philip Wadler</address></li><li class="meta-item">2010-01-17</li><li class="meta-item"><a class="link external" href="https://doi.org/10.1145/1706299.1706342">10.1145/1706299.1706342</a></li></ul></div></header></summary><div>How to integrate static and dynamic types? Recent work focuses on casts to mediate between the two. However, adding casts may degrade tail calls into a non-tail calls, increasing space consumption from constant to linear in the depth of calls.We present a new solution to this old problem, based on the notion of a threesome. A cast is specified by a source and a target type–a twosome. Any twosome factors into a downcast from the source to an intermediate type, followed by an upcast from the intermediate to the target—a threesome. Any chain of threesomes collapses to a single threesome, calculated by taking the greatest lower bound of the intermediate types. We augment this solution with blame labels to map any failure of a threesome back to the offending twosome in the source program.Herman, Tomb, and Flanagan (2007) solve the space problem by representing casts with the coercion calculus of Henglein (1994). While they provide a theoretical limit on the space overhead, there remains the practical question of how best to implement coercion reduction. The threesomes presented in this paper provide a streamlined data structure and algorithm for representing and normalizing coercions. Furthermore, threesomes provide a typed-based explanation of coercion reduction.</div></details></section><footer></footer></article></div></body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="CKC24"><meta name="lang" content="en"><title>Type-Based Gradual Typing Performance Optimization</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="CKC24"><span class="taxon">Article</span>Type-Based Gradual Typing Performance Optimization <a class="slug" href="/CKC24/">[CKC24]</a></h1><div class="metadata"><ul><li class="meta-item">Proc. ACM Program. Lang. 8</li><li class="meta-item">POPL</li><li class="meta-item"><address class="author">John Peter Campora, Mohammad Wahiduzzaman Khan, Sheng Chen</address></li><li class="meta-item">2024-01-05</li><li class="meta-item"><a class="link external" href="https://doi.org/10.1145/3632931">10.1145/3632931</a></li></ul></div></header></summary><div>Gradual typing has emerged as a popular design point in programming languages, attracting significant interests from both academia and industry. Programmers in gradually typed languages are free to utilize static and dynamic typing as needed. To make such languages sound, runtime checks mediate the boundary of typed and untyped code. Unfortunately, such checks can incur significant runtime overhead on programs that heavily mix static and dynamic typing. To combat this overhead without necessitating changes to the underlying implementations of languages, we present discriminative typing. Discriminative typing works by optimistically inferring types for functions and implementing an optimized version of the function based on this type. To preserve safety it also implements an un-optimized version of the function based purely on the provided annotations. With two versions of each function in hand, discriminative typing translates programs so that the optimized functions are called as frequently as possible while also preserving program behaviors.We have implemented discriminative typing in Reticulated Python and have evaluated its performance compared to guarded Reticulated Python. Our results show that discriminative typing improves the performance across 95% of tested programs, when compared to Reticulated, and achieves more than 4× speedup in more than 56% of these programs. We also compare its performance against a previous optimization approach and find that discriminative typing improved performance across 93% of tested programs, with 30% of these programs receiving speedups between 4 to 25 times. Finally, our evaluation shows that discriminative typing remarkably reduces the overhead of gradual typing on many mixed type configurations of programs.In addition, we have implemented discriminative typing in Grift and evaluated its performance. Our evaluation demonstrations that DT significantly improves performance of Grift.</div></details></section><footer></footer></article></div></body></html>
