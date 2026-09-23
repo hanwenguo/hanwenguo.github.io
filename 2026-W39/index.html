@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"><meta name="fediverse:creator" content="@hanwen@types.pl"><link rel="stylesheet" href="/css/weibian.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"><link rel="stylesheet" href="/css/stix-two-math.css"><meta name="identifier" content="2026-W39"><meta name="lang" content="en"><title>Weeknotes 39, Sep 2026</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><div id="grid-wrapper"><header class="header"><nav class="nav"><div class="logo"><a href="/" title="Home">« Home</a></div></nav></header><article><section class="block" lang="en"><details open><summary><header><h1 id="2026-W39">Weeknotes 39, Sep 2026 <a class="slug" href="/2026-W39/">[2026-W39]</a></h1><div class="metadata"><ul><li class="meta-item">September 23, 2026</li></ul></div></header></summary><div><section class="block" lang="en"><details open><summary><header><h1>Idea: plain text outline format<span style="white-space: pre-wrap">&#x20;</span></h1><div class="metadata"><ul></ul></div></header></summary><div>Recently I tried out several “outliner” software, and I generally likes the idea of writing in outline documents. It feels flexible without absolute heading levels, or more importantly, not thinking the document as “sections separated by headings” at all. However, to my surprise, all of these software either uses some proprietary format, or still uses Markdown or some other plain text format with such “heading-section” model (like Org-mode) under the hood. This makes me think: why isn’t there a plain text format for outlines, just like Markdown for sectional documents?</div></details></section></div></details></section><footer></footer></article><nav id="toc"><div class="block"><h1>Table of Contents</h1><ul class="block"><li><a href="//" class="bullet">■</a><a href="#" class="link local">Idea: plain text outline format</a></li></ul></div></nav></div></body></html>
